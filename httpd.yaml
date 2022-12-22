@@ -1,0 +1,22 @@
+--- 
+- hosts: localhost
+  user: ansible
+  become: yes
+  connection: ssh
+
+  tasks:
+    - name: Installing httpd server
+      command: yum install httpd -y
+
+    - name: Restart httpd 
+      command: systemctl restart httpd
+
+    - name: Installing git
+      command: yum install git -y
+
+    - name: Inserting data
+      git:
+        repo: "https://github.com/pravalika77/Ansible.git"
+        dest: "/var/www/html/"
+
+
